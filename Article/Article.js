@@ -85,6 +85,20 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Chemical Engineering as a Web Developer',
+    date: 'Jan 17th, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: ` I changed this so that it will look different odor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -112,3 +126,50 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function ComponentCreator(newobj){
+  let articleDiv=document.createElement('div');
+  articleDiv.classList.add('article');
+
+ let h2Article=document.createElement('h2');
+ h2Article.textContent=`${newobj.title}`;
+
+ let date=document.createElement('p');
+ date.classList.add('date');
+ date.textContent=`${newobj.date}`;
+
+ let firstP=document.createElement('p');
+  firstP.textContent=`${newobj.firstParagraph}`;
+
+  let secondP=document.createElement('p');
+  secondP.textContent=`${newobj.secondParagraph}`;
+
+  let thirdP=document.createElement('p');
+  thirdP.textContent=`${newobj.thirdParagraph}`;
+  
+ let buttondiv=document.createElement('p');
+ buttondiv.textContent='Click here to see more';
+   
+
+  let spanArticle=document.createElement('span');
+  spanArticle.classList.add('expandButton');
+  spanArticle.addEventListener('click', () =>{
+    articleDiv.classList.toggle('article-open');
+  }) 
+
+  articleDiv.appendChild(h2Article);
+  articleDiv.appendChild(date);
+  articleDiv.appendChild(firstP);
+  articleDiv.appendChild(secondP);
+  articleDiv.appendChild(thirdP);
+  articleDiv.appendChild(spanArticle);
+  spanArticle.appendChild(buttondiv);
+
+
+ return articleDiv;
+}
+let hellodata= data.map(item =>{
+ const helloArticle=document.querySelector('.articles');
+ helloArticle.appendChild(ComponentCreator(item));
+ return helloArticle;
+})
